@@ -38,27 +38,30 @@
             // 
             // messageBox
             // 
-            this.messageBox.Location = new System.Drawing.Point(145, 418);
+            this.messageBox.Location = new System.Drawing.Point(290, 804);
+            this.messageBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.messageBox.Name = "messageBox";
-            this.messageBox.Size = new System.Drawing.Size(558, 20);
+            this.messageBox.Size = new System.Drawing.Size(1112, 31);
             this.messageBox.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(10, 419);
+            this.label1.Location = new System.Drawing.Point(20, 806);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 16);
+            this.label1.Size = new System.Drawing.Size(243, 30);
             this.label1.TabIndex = 1;
             this.label1.Text = "Enter message here";
             // 
             // sendButton
             // 
             this.sendButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sendButton.Location = new System.Drawing.Point(713, 416);
+            this.sendButton.Location = new System.Drawing.Point(1426, 800);
+            this.sendButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.sendButton.Name = "sendButton";
-            this.sendButton.Size = new System.Drawing.Size(75, 23);
+            this.sendButton.Size = new System.Drawing.Size(150, 44);
             this.sendButton.TabIndex = 2;
             this.sendButton.Text = "Send";
             this.sendButton.UseVisualStyleBackColor = true;
@@ -66,32 +69,36 @@
             // 
             // allMessagesBox
             // 
-            this.allMessagesBox.Location = new System.Drawing.Point(13, 36);
+            this.allMessagesBox.Location = new System.Drawing.Point(26, 69);
+            this.allMessagesBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.allMessagesBox.Multiline = true;
             this.allMessagesBox.Name = "allMessagesBox";
-            this.allMessagesBox.Size = new System.Drawing.Size(775, 364);
+            this.allMessagesBox.Size = new System.Drawing.Size(1546, 696);
             this.allMessagesBox.TabIndex = 3;
+            this.allMessagesBox.TextChanged += new System.EventHandler(this.allMessagesBox_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(349, 9);
+            this.label2.Location = new System.Drawing.Point(698, 17);
+            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 18);
+            this.label2.Size = new System.Drawing.Size(192, 36);
             this.label2.TabIndex = 4;
             this.label2.Text = "Wizard Of Oz";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1600, 865);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.allMessagesBox);
             this.Controls.Add(this.sendButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.messageBox);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "Form1";
             this.Text = "Wizard of Oz (server)";
             this.ResumeLayout(false);
