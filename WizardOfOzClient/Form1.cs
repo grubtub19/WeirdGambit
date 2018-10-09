@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.Net.Sockets;
+using System.Speech.Synthesis;
 
 namespace WizardOfOzClient
 {
@@ -20,10 +21,12 @@ namespace WizardOfOzClient
         NetworkStream ns;
         Thread t = null;
         private const string hostName = "localhost";
+        SpeechSynthesizer reader; // Text-to-speech class
 
         public Form1()
         {
             InitializeComponent();
+            reader = new SpeechSynthesizer();
             client = new TcpClient(hostName, portNumber);
             ns = client.GetStream();
             String s = "Connected";
@@ -39,7 +42,7 @@ namespace WizardOfOzClient
             byte[] byteTime = Encoding.ASCII.GetBytes(message);
             ns.Write(byteTime, 0, byteTime.Length);
         }
-
+        
         public void DoWork()
         {
             byte[] bytes = new byte[1024];
@@ -67,7 +70,14 @@ namespace WizardOfOzClient
             }
             else
             {
-                this.allMessagesBox.AppendText(text + "\r\n");
+                if(text.Contains("Speak:"))
+                {
+                    reader.Speak(text.Substring(7));
+                }
+                else
+                {
+                    this.allMessagesBox.AppendText(text + "\r\n");
+                }
             }
         }
     }
