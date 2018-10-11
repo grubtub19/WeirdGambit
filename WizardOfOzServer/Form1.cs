@@ -47,13 +47,19 @@ namespace WizardOfOz
         public void DoWork()
         {
             byte[] bytes = new byte[1024];
-            while(true)
+            bool reading_input = true;
+            try
             {
                 int bytesRead = ns.Read(bytes, 0, bytes.Length);
                 this.SetText(Encoding.ASCII.GetString(bytes, 0, bytesRead));
             }
+            catch (System.IO.IOException e)
+            {
+                    closeStream();
+                    Application.Exit();
+                    Environment.Exit(0);
+            }
         }
-
         private void SetText(string text)
         {
             if(this.allMessagesBox.InvokeRequired)
@@ -156,9 +162,10 @@ namespace WizardOfOz
         /// </summary> 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Console.WriteLine("Closing Event Fired!");
+            //Console.WriteLine("Closing Event Fired!");
             closeStream();
             Application.Exit();
+            Environment.Exit(0);            
         }
     }
 }

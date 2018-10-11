@@ -32,7 +32,15 @@ namespace WizardOfOzClient
             InitializeComponent();
             InitComboBoxes();
             reader = new SpeechSynthesizer();
-            client = new TcpClient(hostName, portNumber);
+            try
+            {
+                client = new TcpClient(hostName, portNumber);
+            }
+            catch (System.Net.Sockets.SocketException e)
+            {
+                Application.Exit();
+                Environment.Exit(0);
+            }
             ns = client.GetStream();
             String s = "Connected";
             byte[] byteTime = Encoding.ASCII.GetBytes(s);
@@ -54,8 +62,17 @@ namespace WizardOfOzClient
             byte[] bytes = new byte[1024];
             while (true)
             {
-                int bytesRead = ns.Read(bytes, 0, bytes.Length);
-                this.SetText(Encoding.ASCII.GetString(bytes, 0, bytesRead));
+                try {
+                    int bytesRead = ns.Read(bytes, 0, bytes.Length);
+                    this.SetText(Encoding.ASCII.GetString(bytes, 0, bytesRead));
+                }
+                catch (System.IO.IOException e)
+                {
+                    //The server has close, we need to close the application
+                    closeStream();
+                    Application.Exit();
+                    Environment.Exit(0);
+                }
             }
         }
 
@@ -244,9 +261,10 @@ namespace WizardOfOzClient
         /// </summary> 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Console.WriteLine("Closing Event Triggered");
+            //Console.WriteLine("Closing Event Triggered");
             closeStream();
             Application.Exit();
+            Environment.Exit(0);
         }
     }
 }
