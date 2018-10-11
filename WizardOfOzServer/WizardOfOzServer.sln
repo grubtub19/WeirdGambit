@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WizardOfOzServer", "WizardOfOzServer.csproj", "{5A3DD675-6F82-4748-8926-856466B6B669}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WizardOfOzClient", "..\WizardOfOzClient\WizardOfOzClient.csproj", "{4AFA6048-122D-4BC7-8885-B86097B3BDBD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{5A3DD675-6F82-4748-8926-856466B6B669}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A3DD675-6F82-4748-8926-856466B6B669}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A3DD675-6F82-4748-8926-856466B6B669}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4AFA6048-122D-4BC7-8885-B86097B3BDBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4AFA6048-122D-4BC7-8885-B86097B3BDBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4AFA6048-122D-4BC7-8885-B86097B3BDBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4AFA6048-122D-4BC7-8885-B86097B3BDBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
