@@ -48,17 +48,19 @@ namespace WizardOfOz
         public void DoWork()
         {
             byte[] bytes = new byte[1024];
-            bool reading_input = true;
-            try
+            while (true)
             {
-                int bytesRead = ns.Read(bytes, 0, bytes.Length);
-                this.SetText(Encoding.ASCII.GetString(bytes, 0, bytesRead));
-            }
-            catch (System.IO.IOException e)
-            {
+                try
+                {
+                    int bytesRead = ns.Read(bytes, 0, bytes.Length);
+                    this.SetText(Encoding.ASCII.GetString(bytes, 0, bytesRead));
+                }
+                catch (System.IO.IOException e)
+                {
                     closeStream();
                     Application.Exit();
                     Environment.Exit(0);
+                }
             }
         }
         private void SetText(string text)
