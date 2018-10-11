@@ -27,6 +27,7 @@ namespace WizardOfOz
         public Form1()
         {
             InitializeComponent();
+            InitMessageBox();
             ipAddress = Dns.Resolve("localhost").AddressList[0]; //ffmpeg uses ipAddress to select the destination
             listener = new TcpListener(ipAddress, 4545);
             listener.Start();
@@ -47,17 +48,19 @@ namespace WizardOfOz
         public void DoWork()
         {
             byte[] bytes = new byte[1024];
-            bool reading_input = true;
-            try
+            while (true)
             {
-                int bytesRead = ns.Read(bytes, 0, bytes.Length);
-                this.SetText(Encoding.ASCII.GetString(bytes, 0, bytesRead));
-            }
-            catch (System.IO.IOException e)
-            {
+                try
+                {
+                    int bytesRead = ns.Read(bytes, 0, bytes.Length);
+                    this.SetText(Encoding.ASCII.GetString(bytes, 0, bytesRead));
+                }
+                catch (System.IO.IOException e)
+                {
                     closeStream();
                     Application.Exit();
                     Environment.Exit(0);
+                }
             }
         }
         private void SetText(string text)
@@ -71,6 +74,12 @@ namespace WizardOfOz
             {
                 this.allMessagesBox.AppendText(text + "\r\n");
             }
+        }
+
+        private void InitMessageBox()
+        {
+            messageBox.Text = "Message";
+            messageBox.ForeColor = Color.Gray;
         }
 
         private Process videoProcess; //keep track of the process so we can kill it later
@@ -110,8 +119,8 @@ namespace WizardOfOz
             {
                 audioProcess = new Process();
                 process = audioProcess;
-                process.StartInfo.Arguments = "-fflags nobuffer udp://" + ipAddress + ":1235"; //this is the audio reciever. You can edit the address here. 
-                                                                                       //Add -nodisp between "fflags" and "nobuffer" to remove the audio window
+                process.StartInfo.Arguments = "-nodisp -fflags nobuffer udp://" + ipAddress + ":1235"; //this is the audio reciever. You can edit the address here. 
+                                                                                       //Add -nodisp before "fflags" to remove the audio window
                 audioProcessFirstStarted = true;
             }
             else
@@ -121,8 +130,8 @@ namespace WizardOfOz
             }
             process.StartInfo.FileName = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName) +
                         @"\..\..\..\Libraries\ffplay.exe";
-            //process.StartInfo.UseShellExecute = false; //these lines let you run it without a window. disable for testing.
-            //process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.UseShellExecute = false; //these lines let you run it without a window. disable for testing.
+            process.StartInfo.CreateNoWindow = true;
             process.Start();
         }
 
@@ -166,6 +175,24 @@ namespace WizardOfOz
             closeStream();
             Application.Exit();
             Environment.Exit(0);            
+        }
+
+        private void messageBox_Click(object sender, EventArgs e)
+        {
+            if (messageBox.ForeColor == Color.Gray)
+            {
+                messageBox.Text = string.Empty;
+                messageBox.ForeColor = Color.Black;
+            }
+        }
+
+        private void messageBox_Leave(object sender, EventArgs e)
+        {
+            if (messageBox.Text == string.Empty)
+            {
+                messageBox.Text = "Message";
+                messageBox.ForeColor = Color.Gray;
+            }
         }
     }
 }

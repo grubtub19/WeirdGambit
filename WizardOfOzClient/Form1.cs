@@ -26,10 +26,12 @@ namespace WizardOfOzClient
         Thread t = null;
         private const string hostName = "127.0.0.1"; //ffmpeg uses hostName to select the address to listen on.
         SpeechSynthesizer reader; // Text-to-speech class
+        StreamWriter logFile = new StreamWriter("log.txt", false);
 
         public Form1()
         {
             InitializeComponent();
+            InitMessageBox();
             InitComboBoxes();
             reader = new SpeechSynthesizer();
             try
@@ -53,6 +55,7 @@ namespace WizardOfOzClient
         private void sendButton_Click(object sender, EventArgs e)
         {
             String message = messageBox.Text;
+            logFile.WriteLine(message);
             byte[] byteTime = Encoding.ASCII.GetBytes(message);
             ns.Write(byteTime, 0, byteTime.Length);
         }
@@ -93,7 +96,10 @@ namespace WizardOfOzClient
             }
             else
             {
-                if(text.Contains("Speak:"))
+
+                logFile.WriteLine(text);
+
+                if (text.Contains("Speak:"))
                 {
                     reader.Speak(text.Substring(7));
                 }
@@ -102,6 +108,12 @@ namespace WizardOfOzClient
                     this.allMessagesBox.AppendText(text + "\r\n");
                 }
             }
+        }
+
+        private void InitMessageBox()
+        {
+            messageBox.Text = "Message";
+            messageBox.ForeColor = Color.Gray;
         }
 
         private void InitComboBoxes()
@@ -227,8 +239,8 @@ namespace WizardOfOzClient
             }
             process.StartInfo.FileName = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName) +
                                     @"\..\..\..\Libraries\ffmpeg.exe";
-            //process.StartInfo.UseShellExecute = false; //these lines let you run it without a window. disable for testing.
-            //process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.UseShellExecute = false; //these lines let you run it without a window. disable for testing.
+            process.StartInfo.CreateNoWindow = true;
             process.Start();
         }
 
@@ -262,9 +274,33 @@ namespace WizardOfOzClient
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             //Console.WriteLine("Closing Event Triggered");
+            logFile.Close();
             closeStream();
             Application.Exit();
             Environment.Exit(0);
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void messageBox_Click(object sender, EventArgs e)
+        {
+            if (messageBox.ForeColor == Color.Gray)
+            {
+               messageBox.Text = string.Empty;
+               messageBox.ForeColor = Color.Black;
+            }
+        }
+
+        private void messageBox_Leave(object sender, EventArgs e)
+        {
+            if (messageBox.Text == string.Empty)
+            {
+                messageBox.Text = "Message";
+                messageBox.ForeColor = Color.Gray;
+            }
         }
     }
 }
