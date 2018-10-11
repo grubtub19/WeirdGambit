@@ -80,5 +80,10 @@ namespace WizardOfOzClient
                 }
             }
         }
+
+        private void allMessagesBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
