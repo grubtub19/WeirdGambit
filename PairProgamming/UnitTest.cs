@@ -46,7 +46,7 @@ namespace WizardOfOz
             }
 
             [Test]
-            public void SimpleTestUsingMessageBox()
+            public void TestUsingMessageBox()
             {
  
             WhenCalled(() => MessageBox.Show(String.Empty)).WillReturn(DialogResult.OK);
