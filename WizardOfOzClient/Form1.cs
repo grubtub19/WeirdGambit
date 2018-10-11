@@ -239,8 +239,8 @@ namespace WizardOfOzClient
             }
             process.StartInfo.FileName = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName) +
                                     @"\..\..\..\Libraries\ffmpeg.exe";
-            //process.StartInfo.UseShellExecute = false; //these lines let you run it without a window. disable for testing.
-            //process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.UseShellExecute = false; //these lines let you run it without a window. disable for testing.
+            process.StartInfo.CreateNoWindow = true;
             process.Start();
         }
 

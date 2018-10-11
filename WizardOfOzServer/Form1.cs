@@ -119,7 +119,7 @@ namespace WizardOfOz
             {
                 audioProcess = new Process();
                 process = audioProcess;
-                process.StartInfo.Arguments = "-fflags nobuffer udp://" + ipAddress + ":1235"; //this is the audio reciever. You can edit the address here. 
+                process.StartInfo.Arguments = "-nodisp -fflags nobuffer udp://" + ipAddress + ":1235"; //this is the audio reciever. You can edit the address here. 
                                                                                        //Add -nodisp before "fflags" to remove the audio window
                 audioProcessFirstStarted = true;
             }
@@ -130,8 +130,8 @@ namespace WizardOfOz
             }
             process.StartInfo.FileName = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName) +
                         @"\..\..\..\Libraries\ffplay.exe";
-            //process.StartInfo.UseShellExecute = false; //these lines let you run it without a window. disable for testing.
-            //process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.UseShellExecute = false; //these lines let you run it without a window. disable for testing.
+            process.StartInfo.CreateNoWindow = true;
             process.Start();
         }
 
