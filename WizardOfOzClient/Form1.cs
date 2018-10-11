@@ -31,6 +31,7 @@ namespace WizardOfOzClient
         public Form1()
         {
             InitializeComponent();
+            InitMessageBox();
             InitComboBoxes();
             reader = new SpeechSynthesizer();
             try
@@ -107,6 +108,12 @@ namespace WizardOfOzClient
                     this.allMessagesBox.AppendText(text + "\r\n");
                 }
             }
+        }
+
+        private void InitMessageBox()
+        {
+            messageBox.Text = "Message";
+            messageBox.ForeColor = Color.Gray;
         }
 
         private void InitComboBoxes()
@@ -232,8 +239,8 @@ namespace WizardOfOzClient
             }
             process.StartInfo.FileName = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName) +
                                     @"\..\..\..\Libraries\ffmpeg.exe";
-            process.StartInfo.UseShellExecute = false; //these lines let you run it without a window. disable for testing.
-            process.StartInfo.CreateNoWindow = true;
+            //process.StartInfo.UseShellExecute = false; //these lines let you run it without a window. disable for testing.
+            //process.StartInfo.CreateNoWindow = true;
             process.Start();
         }
 
@@ -271,6 +278,29 @@ namespace WizardOfOzClient
             closeStream();
             Application.Exit();
             Environment.Exit(0);
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void messageBox_Click(object sender, EventArgs e)
+        {
+            if (messageBox.ForeColor == Color.Gray)
+            {
+               messageBox.Text = string.Empty;
+               messageBox.ForeColor = Color.Black;
+            }
+        }
+
+        private void messageBox_Leave(object sender, EventArgs e)
+        {
+            if (messageBox.Text == string.Empty)
+            {
+                messageBox.Text = "Message";
+                messageBox.ForeColor = Color.Gray;
+            }
         }
     }
 }
