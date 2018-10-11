@@ -24,7 +24,7 @@ namespace WizardOfOzClient
         TcpClient client;
         NetworkStream ns;
         Thread t = null;
-        private const string hostName = "localhost";
+        private const string hostName = "127.0.0.1"; //ffmpeg uses hostName to select the address to listen on.
         SpeechSynthesizer reader; // Text-to-speech class
 
         public Form1()
@@ -37,6 +37,7 @@ namespace WizardOfOzClient
             String s = "Connected";
             byte[] byteTime = Encoding.ASCII.GetBytes(s);
             ns.Write(byteTime, 0, byteTime.Length);
+            Console.Write("ip address: " + hostName);
             t = new Thread(DoWork);
             t.Start();
         }   
@@ -189,16 +190,16 @@ namespace WizardOfOzClient
             {
                 videoProcess = new Process();
                 process = videoProcess;
-                process.StartInfo.Arguments = "-f dshow -video_size 640x480 -r 30 -i video=\"" + hardwareName + "\" -filter:v \"setpts=(39/40)*PTS\" -vcodec libx264 -preset ultrafast -f mpegts udp://127.0.0.1:1234";
-                                                                            //the is the video encoder/streamer. You can edit the udp address. 
+                process.StartInfo.Arguments = "-y -f dshow -video_size 640x480 -r 30 -i video=\"" + hardwareName + "\" -filter:v \"setpts=(39/40)*PTS\" -vcodec libx264 -preset ultrafast -f tee -map 0:v \"[f=mpegts]log.mkv|[f=mpegts]udp://" + hostName + ":1234/\"";
+                                                                                                                                                                                                                                                //the is the video encoder/streamer. You can edit the udp address. 
                 videoProcessFirstStarted = true;
             }
             else if (mediaType == "audio")
             {
                 audioProcess = new Process();
                 process = audioProcess;
-                process.StartInfo.Arguments = "-f dshow -i audio=\"" + hardwareName + "\" -af asetrate=44100*(20/19),aresample=44100 -acodec aac -f mpegts udp://127.0.0.1:1235 ";
-                                                                            //this is the audio encoder/streamer. You can edit the address here. 
+                process.StartInfo.Arguments = "-y -f dshow -i audio=\"" + hardwareName + "\" -af asetrate=44100*(20/19),aresample=44100 -acodec aac -f tee -map 0:a \"[f=mpegts]log.aac|[f=mpegts]udp://" + hostName + ":1235/\"";
+                //this is the audio encoder/streamer. You can edit the address here. 
                 audioProcessFirstStarted = true;
 
             }

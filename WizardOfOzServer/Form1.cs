@@ -21,15 +21,18 @@ namespace WizardOfOz
         TcpClient client;
         NetworkStream ns;
         Thread t = null;
+        IPAddress ipAddress;
+
 
         public Form1()
         {
             InitializeComponent();
-            IPAddress ipAddress = Dns.Resolve("localhost").AddressList[0];
+            ipAddress = Dns.Resolve("localhost").AddressList[0]; //ffmpeg uses ipAddress to select the destination
             listener = new TcpListener(ipAddress, 4545);
             listener.Start();
             client = listener.AcceptTcpClient();
             ns = client.GetStream();
+            Console.Write("ip address: " + ipAddress);
             t = new Thread(DoWork);
             t.Start();
         }
@@ -94,14 +97,14 @@ namespace WizardOfOz
             {
                 videoProcess = new Process();
                 process = videoProcess;
-                process.StartInfo.Arguments = "-fflags nobuffer udp://127.0.0.1:1234"; //this is the video reciever. You can edit the address here
+                process.StartInfo.Arguments = "-fflags nobuffer udp://" + ipAddress + ":1234"; //this is the video reciever. You can edit the address here
                 videoProcessFirstStarted = true;
             }
             else if (mediaType == "audio")
             {
                 audioProcess = new Process();
                 process = audioProcess;
-                process.StartInfo.Arguments = "-fflags nobuffer udp://127.0.0.1:1235"; //this is the audio reciever. You can edit the address here. 
+                process.StartInfo.Arguments = "-fflags nobuffer udp://" + ipAddress + ":1235"; //this is the audio reciever. You can edit the address here. 
                                                                                        //Add -nodisp between "fflags" and "nobuffer" to remove the audio window
                 audioProcessFirstStarted = true;
             }
