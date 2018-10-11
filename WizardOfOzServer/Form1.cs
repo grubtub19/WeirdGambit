@@ -61,9 +61,5 @@ namespace WizardOfOz
                 this.allMessagesBox.AppendText(text + "\r\n");
             }
         }
-        private void allMessagesBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
