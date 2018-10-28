@@ -62,6 +62,7 @@ namespace WpfApp1
             logFile.WriteLine(message);
             byte[] byteTime = Encoding.ASCII.GetBytes(message);
             ns.Write(byteTime, 0, byteTime.Length);
+            allMessagesBox.AppendText("You: " + message + "\r\n");
             inputBox.Text = string.Empty;
 
         }
@@ -103,7 +104,7 @@ namespace WpfApp1
                 }
                 else
                 {
-                    this.allMessagesBox.AppendText(text + "\r\n");
+                    this.allMessagesBox.AppendText("Server: " + text + "\r\n");
                 }
             }
         }

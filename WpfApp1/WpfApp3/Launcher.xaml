@@ -10,15 +10,14 @@
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         mc:Ignorable="d"
-        Title="Launcher" Height="192" Width="585.2">
+        Title="Launcher" Height="192" Width="585.2" WindowStartupLocation="CenterScreen">
     <Grid>
-
         <Border BorderBrush="#FFF6F6F7" BorderThickness="0" HorizontalAlignment="Left" Height="63" Margin="10,10,0,0" VerticalAlignment="Top" Width="446" CornerRadius="8" Background="#FFF6F6F7">
             <TextBox x:Name="addressBox" HorizontalAlignment="Center" TextWrapping="Wrap" Text="IP Address" Width="400" Margin="0" FontSize="24" FontFamily="Roboto Light" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="LightGray" Height="32" VerticalAlignment="Center" BorderThickness="0" SelectionBrush="{x:Null}" GotFocus="addressBox_GotFocus" LostFocus="addressBox_LostFocus"/>
         </Border>
         <ComboBox x:Name="comboBox1" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top" Width="276" Height="29"/>
         <ComboBox x:Name="comboBox2" HorizontalAlignment="Left" Margin="291,78,0,0" VerticalAlignment="Top" Width="276" Height="29"/>
-        <Button Content="GO!" HorizontalAlignment="Left" Margin="475,10,0,0" VerticalAlignment="Top" Width="69" Height="63" Click="Button_Click"/>
+        <Button Content="GO!" IsDefault="True" HorizontalAlignment="Left" Margin="475,10,0,0" VerticalAlignment="Top" Width="69" Height="63" Click="Button_Click"/>
         <TextBlock x:Name="textBox" HorizontalAlignment="Left" Margin="10,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="38" Width="557" FontWeight="Light"><Run Text="'Oz' -&gt; starts Oz on localhost"/><LineBreak/><Run Text="'Oz network' -&gt; uses local IPv4 (Ex: 172.16.40.27 is my address on TUWireless)"/></TextBlock>
     </Grid>
 </Window>
