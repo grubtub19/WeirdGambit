@@ -132,5 +132,23 @@ namespace WpfApp1
                 }
             }
         }
+
+        private void addressBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if(addressBox.Foreground == Brushes.LightGray)
+            {
+                addressBox.Text = string.Empty;
+                addressBox.Foreground = Brushes.Black;
+            }
+        }
+
+        private void addressBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if(addressBox.Text == string.Empty)
+            {
+                addressBox.Text = "IP Address";
+                addressBox.Foreground = Brushes.LightGray;
+            }
+        }
     }
 }
