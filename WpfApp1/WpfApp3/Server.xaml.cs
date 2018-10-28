@@ -51,6 +51,7 @@ namespace WpfApp1
             String message = inputBox.Text;
             byte[] byteTime = Encoding.ASCII.GetBytes(message);
             ns.Write(byteTime, 0, byteTime.Length);
+            inputBox.Text = string.Empty;
         }
         public void DoWork()
         {
