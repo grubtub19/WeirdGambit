@@ -1,23 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Threading;
 using System.Net.Sockets;
-using System.Speech.Synthesis;
-using AForge.Video;
-using AForge.Video.DirectShow;
 using System.Diagnostics;
 using System.IO;
+using System.Speech.Synthesis;
 
 
 namespace WpfApp1
@@ -25,7 +14,7 @@ namespace WpfApp1
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class Client : Window
     {
         public const int portNumber = 4545;
         delegate void SetTextCallback(string Text);
@@ -33,19 +22,24 @@ namespace WpfApp1
         TcpClient client;
         NetworkStream ns;
         Thread t = null;
-        private const string hostName = "127.0.0.1"; //ffmpeg uses hostName to select the address to listen on.
+        private string hostName = "127.0.0.1"; //ffmpeg uses hostName to select the address to listen on.
+        private string audioDevice;
+        private string videoDevice;
         SpeechSynthesizer reader; // Text-to-speech class
         StreamWriter logFile = new StreamWriter("log.txt", false);
 
-        public Window1()
+        public Client(string hostName, string audioDevice, string videoDevice)
         {
+            Console.WriteLine("hostname = *" + hostName + "*");
+            this.hostName = hostName;
+            this.audioDevice = audioDevice;
+            this.videoDevice = videoDevice;
             InitializeComponent();
             InitMessageBox();
-            InitComboBoxes();
             reader = new SpeechSynthesizer();
             try
             {
-                client = new TcpClient(hostName, portNumber);
+                client = new TcpClient("127.0.0.1", portNumber);
             }
             catch (System.Net.Sockets.SocketException e)
             {
@@ -119,71 +113,6 @@ namespace WpfApp1
             inputBox.Foreground = Brushes.Gray;
         }
 
-        private void InitComboBoxes()
-        {
-            InitComboBox1();
-            InitComboBox2();
-        }
-
-        /// <summary> 
-        ///  Initializes the webcam dropdown menu. Populates it with the avaliable webcams on your system. If you pick one that doesn't work, it will fail to launch the video.
-        /// </summary> 
-        private void InitComboBox1()
-        {
-            bool DeviceExist = false;
-            FilterInfoCollection videoDevices;
-            //VideoCaptureDevice videoSource = null;
-
-            try
-            {
-                videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-                comboBox1.Items.Clear();
-                if (videoDevices.Count == 0)
-                    throw new ApplicationException();
-
-                DeviceExist = true;
-                foreach (FilterInfo device in videoDevices)
-                {
-                    comboBox1.Items.Add(device.Name);
-                }
-                comboBox1.SelectedIndex = 0;
-            }
-            catch (ApplicationException)
-            {
-                DeviceExist = false;
-                comboBox1.Items.Add("No capture device on your system");
-            }
-        }
-
-        /// <summary> 
-        ///  Initializes the audio dropdown menu. Populates it with the avaliable webcams on your system. 
-        /// </summary> 
-        private void InitComboBox2()
-        {
-            bool DeviceExist = false;
-            FilterInfoCollection audioDevices;
-
-            try
-            {
-                audioDevices = new FilterInfoCollection(FilterCategory.AudioInputDevice);
-                comboBox2.Items.Clear();
-                if (audioDevices.Count == 0)
-                    throw new ApplicationException();
-
-                DeviceExist = true;
-                foreach (FilterInfo device in audioDevices)
-                {
-                    comboBox2.Items.Add(device.Name);
-                }
-                comboBox2.SelectedIndex = 0;
-            }
-            catch (ApplicationException)
-            {
-                DeviceExist = false;
-                comboBox2.Items.Add("No capture device on your system");
-            }
-        }
-
         private Process videoProcess; //keep track of the process so we can kill it later
         private Process audioProcess;
         private bool videoProcessFirstStarted = false; //used to store whether or not the process has been started before. because if that's the case, it's null.
@@ -194,20 +123,13 @@ namespace WpfApp1
         /// </summary> 
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
-            if (comboBox1.SelectedItem != null && comboBox2.SelectedItem != null)
+            if (!videoProcessFirstStarted || videoProcess.HasExited)
             {
-                if (!videoProcessFirstStarted || videoProcess.HasExited)
-                {
-                    startFFmpeg("video", comboBox1.Text);
-                }
-                if (!audioProcessFirstStarted || audioProcess.HasExited)
-                {
-                    startFFmpeg("audio", comboBox2.Text);
-                }
+                startFFmpeg("video", videoDevice);
             }
-            else
+            if (!audioProcessFirstStarted || audioProcess.HasExited)
             {
-                allMessagesBox.AppendText("Select input devices!!!\r\n");
+                startFFmpeg("audio", audioDevice);
             }
         }
 

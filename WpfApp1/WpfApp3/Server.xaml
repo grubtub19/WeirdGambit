@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Server" Height="450" Width="368.713">
+        Title="Server" Height="450" Width="368.713" Closing="Window_Closing">
     <Grid Margin="0,0,5,0.5">
         <Label Content="Wizard Of Oz" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Width="97" Grid.ColumnSpan="2"/>
         <Button x:Name="startStreamButton" Content="Start Stream Receiver" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="160" Grid.ColumnSpan="2" Height="20" Click="startStreamButton_Click"/>

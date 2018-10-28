@@ -35,8 +35,8 @@ namespace WpfApp1
         {
             InitializeComponent();
             InitMessageBox();
-            ipAddress = Dns.Resolve("localhost").AddressList[0]; //ffmpeg uses ipAddress to select the destination
-            //Console.WriteLine(ipAddress.ToString());
+            ipAddress = Dns.Resolve(hostName).AddressList[0]; //ffmpeg uses ipAddress to select the destination
+            Console.WriteLine(ipAddress.ToString());
             listener = new TcpListener(ipAddress, 4545);
             listener.Start();
             client = listener.AcceptTcpClient();
@@ -65,7 +65,10 @@ namespace WpfApp1
                 catch (System.IO.IOException e)
                 {
                     closeStream();
-                    System.Windows.Application.Current.Shutdown();
+                    this.Dispatcher.Invoke(() =>
+                    {
+                        System.Windows.Application.Current.Shutdown();
+                    });
                     Environment.Exit(0);
                 }
             }
@@ -160,13 +163,7 @@ namespace WpfApp1
         {
             closeStream();
         }
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            closeStream();
-            Application.Current.Shutdown();
-            Environment.Exit(0);
 
-        }
         private void inputBox_GotFocus(object sender, RoutedEventArgs e)
         {
             if (inputBox.Foreground == Brushes.Gray)
@@ -183,6 +180,13 @@ namespace WpfApp1
                 inputBox.Text = "Message";
                 inputBox.Foreground = Brushes.Gray;
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            closeStream();
+            Application.Current.Shutdown();
+            Environment.Exit(0);
         }
     }
 }
