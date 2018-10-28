@@ -8,8 +8,8 @@
         Title="Server" Height="450" Width="368.713">
     <Grid Margin="0,0,5,0.5">
         <Label Content="Wizard Of Oz" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Width="97" Grid.ColumnSpan="2"/>
-        <Button x:Name="startStreamButton" Content="Start Stream Receiver" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="160" Grid.ColumnSpan="2" Height="20"/>
-        <Button x:Name="stopStreamButton" Content="Stop Stream Receiver" HorizontalAlignment="Left" Margin="175,41,0,0" VerticalAlignment="Top" Width="164" Height="20"/>
+        <Button x:Name="startStreamButton" Content="Start Stream Receiver" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="160" Grid.ColumnSpan="2" Height="20" Click="startStreamButton_Click"/>
+        <Button x:Name="stopStreamButton" Content="Stop Stream Receiver" HorizontalAlignment="Left" Margin="175,41,0,0" VerticalAlignment="Top" Width="164" Height="20" Click="stopStreamButton_Click"/>
         <TextBox x:Name="inputBox" HorizontalAlignment="Left" Height="24" Margin="10,388,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="255" Grid.ColumnSpan="2" GotFocus="inputBox_GotFocus" LostFocus="inputBox_LostFocus"/>
         <Button x:Name="sendButton" Content="Send" HorizontalAlignment="Left" Margin="274,388,0,0" VerticalAlignment="Top" Width="65" Height="24" Click="sendButton_Click"/>
         <TextBox x:Name="allMessagesBox" HorizontalAlignment="Left" Height="317" Margin="10,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="328" IsReadOnly="True" Focusable="False"/>
