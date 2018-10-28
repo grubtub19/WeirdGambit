@@ -123,10 +123,15 @@ namespace WpfApp1
             else
             { 
                 IPAddress address;
-                if(IPAddress.TryParse(addressBox.Text, out address))
+                String input = addressBox.Text;
+                if (input.ToLower() == "localhost")
                 {
-                    Console.WriteLine("address = *" + addressBox.Text + "*");
-                    Client window = new Client(addressBox.Text, comboBox1.Text, comboBox2.Text);
+                    input = "127.0.0.1"; // TryParse doesn't understand "localhost" 
+                }
+                if(IPAddress.TryParse(input, out address))
+                {
+                    Console.WriteLine("address = *" + input + "*");
+                    Client window = new Client(input, comboBox1.Text, comboBox2.Text);
                     window.Show();
                     this.Close();
                 }

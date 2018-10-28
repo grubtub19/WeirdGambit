@@ -51,6 +51,8 @@ namespace WpfApp1
             String message = inputBox.Text;
             byte[] byteTime = Encoding.ASCII.GetBytes(message);
             ns.Write(byteTime, 0, byteTime.Length);
+            allMessagesBox.AppendText("You: " + message + "\r\n");
+            inputBox.Text = string.Empty;
         }
         public void DoWork()
         {
@@ -82,7 +84,7 @@ namespace WpfApp1
             }
             else
             {
-                this.allMessagesBox.AppendText(text + "\r\n");
+                this.allMessagesBox.AppendText("Client: " + text + "\r\n");
             }
         }
         private void InitMessageBox()

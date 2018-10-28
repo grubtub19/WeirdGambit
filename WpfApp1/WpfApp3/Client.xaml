@@ -3,20 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Client" Height="404.43" Width="317.722" Closing="Window_Closing">
-    <Grid Margin="0,0,5,0.5">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="23*"/>
-            <ColumnDefinition Width="282*"/>
-        </Grid.ColumnDefinitions>
-        <TextBox x:Name="inputBox" HorizontalAlignment="Left" Height="22" Margin="10,344,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" GotFocus="inputBox_GotFocus" LostFocus="inputBox_LostFocus" Grid.ColumnSpan="2"/>
-        <Button x:Name="sendButton" Content="Send" HorizontalAlignment="Left" Margin="212.038,344,0,0" VerticalAlignment="Top" Width="63" Height="22" Click="sendButton_Click" Grid.Column="1"/>
-        <Label Content="Programmer" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.514,-0.231" Height="28" Grid.ColumnSpan="2"/>
-        <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="14,43,0,0" VerticalAlignment="Top" Width="76" Height="22" Click="startButton_Click" Grid.ColumnSpan="2"/>
-        <Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Left" Margin="72.038,43,0,0" VerticalAlignment="Top" Width="76" Height="22" Click="stopButton_Click" Grid.Column="1"/>
-        <TextBox x:Name="allMessagesBox" HorizontalAlignment="Left" Height="269" Margin="10,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" IsReadOnly="True" Focusable="False" Grid.ColumnSpan="2"/>
+        Title="Client" Height="474" Width="364.713" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,4.5,1">
+        <TextBox x:Name="inputBox" HorizontalAlignment="Left" Height="30" Margin="10,394,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="257" GotFocus="inputBox_GotFocus" LostFocus="inputBox_LostFocus"/>
+        <Button x:Name="sendButton" IsDefault="True" Content="Send" HorizontalAlignment="Left" Margin="271,394,0,0" VerticalAlignment="Top" Width="64" Height="30" Click="sendButton_Click" RenderTransformOrigin="0.5,0.068"/>
+        <Label Content="Programmer" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="92" RenderTransformOrigin="0.514,-0.231" Height="28" Grid.ColumnSpan="2"/>
+        <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="129" Height="27" Click="startButton_Click"/>
+        <Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Left" Margin="144,38,0,0" VerticalAlignment="Top" Width="129" Height="27" Click="stopButton_Click"/>
+        <TextBox x:Name="allMessagesBox" HorizontalAlignment="Left" Height="307" Margin="10,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="325" IsReadOnly="True" Focusable="False" TextBlock.LineStackingStrategy="BlockLineHeight" TextBlock.LineHeight="25"/>
 
     </Grid>
 </Window>
