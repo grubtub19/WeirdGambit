@@ -99,7 +99,7 @@ namespace WpfApp1
         {
             if(addressBox.Text == "Oz")
             {
-                Server window = new Server("172.16.40.27");
+                Server window = new Server("localhost");
                 window.Show();
                 this.Close();
             } else if (addressBox.Text == "Oz network")
