@@ -200,14 +200,32 @@ namespace WpfApp1
             ns.Write(byteTime, 0, byteTime.Length);
         }
 
-    private void button_Click_1(object sender, RoutedEventArgs e)
+        private void confused_button_click(object sender, RoutedEventArgs e)
         {
-
+            String message = "confused_button_clicked";
+            byte[] byteTime = Encoding.ASCII.GetBytes(message);
+            ns.Write(byteTime, 0, byteTime.Length);
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void happy_button_clicked(object sender, RoutedEventArgs e)
         {
+            String message = "happy_button_clicked";
+            byte[] byteTime = Encoding.ASCII.GetBytes(message);
+            ns.Write(byteTime, 0, byteTime.Length);
+        }
 
+        private void mocking_button_clicked(object sender, RoutedEventArgs e)
+        {
+            String message = "mocking_button_clicked";
+            byte[] byteTime = Encoding.ASCII.GetBytes(message);
+            ns.Write(byteTime, 0, byteTime.Length);
+        }
+
+        private void sad_button_click(object sender, RoutedEventArgs e)
+        {
+            String message = "sad_button_clicked";
+            byte[] byteTime = Encoding.ASCII.GetBytes(message);
+            ns.Write(byteTime, 0, byteTime.Length);
         }
     }
 }

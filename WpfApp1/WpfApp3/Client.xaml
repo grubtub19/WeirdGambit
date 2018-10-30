@@ -22,6 +22,6 @@
         <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="129" Height="27" Click="startButton_Click"/>
         <Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Left" Margin="144,38,0,0" VerticalAlignment="Top" Width="129" Height="27" Click="stopButton_Click" Grid.ColumnSpan="2"/>
         <TextBox x:Name="allMessagesBox" HorizontalAlignment="Left" Height="137" Margin="10,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="325" IsReadOnly="True" Focusable="False" TextBlock.LineStackingStrategy="BlockLineHeight" TextBlock.LineHeight="25" Grid.ColumnSpan="2"/>
-        <MediaElement x:Name="mediaElement" HorizontalAlignment="Left" Height="165" Margin="10,70,0,0" VerticalAlignment="Top" Width="325" Grid.ColumnSpan="2" Source="Animations/Video1.WMV" IsMuted="True" LoadedBehavior="Manual" MediaEnded="player_MediaEnded"/>
+        <MediaElement x:Name="mediaElement" HorizontalAlignment="Left" Height="165" Margin="28,70,0,0" VerticalAlignment="Top" Width="294" Grid.ColumnSpan="2" Source="Animations/Rest_1.wmv" IsMuted="True" LoadedBehavior="Manual" MediaEnded="player_MediaEnded"/>
     </Grid>
 </Window>
