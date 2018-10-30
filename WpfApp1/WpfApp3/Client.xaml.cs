@@ -53,7 +53,7 @@ namespace WpfApp1
             Console.Write("ip address: " + hostName);
             t = new Thread(DoWork);
             t.Start();
-
+            mediaElement.Play();
         }
 
         private void sendButton_Click(object sender, RoutedEventArgs e)
@@ -101,6 +101,52 @@ namespace WpfApp1
                 if (text.Contains("Speak:"))
                 {
                     reader.Speak(text.Substring(7));
+                }
+                else if (text.Contains("angry_button_clicked"))
+                {
+                    //TODO: MAKE THE ANGRY ANIMATION PLAY
+                    Console.WriteLine("NOTICE: GOT COMMAND TO PLAY angry ANIMATION");
+                    string animationName = "Angry2.wmv";
+                    string path = Path.Combine(Environment.CurrentDirectory, @"Animations\", animationName);
+                    Uri pathUri = new Uri(path);
+                    mediaElement.Source = pathUri;
+                    mediaElement.Play();
+                }
+                else if (text.Contains("confused_button_clicked"))
+                {
+                    //TODO: MAKE THE CONFUSED ANIMATION PLAY
+                    string animationName = "Confused2.wmv";
+                    string path = Path.Combine(Environment.CurrentDirectory, @"Animations\", animationName);
+                    Uri pathUri = new Uri(path);
+                    mediaElement.Source = pathUri;
+                    mediaElement.Play();
+                }
+                else if (text.Contains("happy_button_clicked"))
+                {
+                    //TODO: MAKE THE HAPPY ANIMATION PLAY
+                    string animationName = "Happy2.wmv";
+                    string path = Path.Combine(Environment.CurrentDirectory, @"Animations\", animationName);
+                    Uri pathUri = new Uri(path);
+                    mediaElement.Source = pathUri;
+                    mediaElement.Play();
+                }
+                else if (text.Contains("mocking_button_clicked"))
+                {
+                    //TODO: MAKE THE MOCKING ANIMATION PLAY
+                    string animationName = "Mocking2.wmv";
+                    string path = Path.Combine(Environment.CurrentDirectory, @"Animations\", animationName);
+                    Uri pathUri = new Uri(path);
+                    mediaElement.Source = pathUri;
+                    mediaElement.Play();
+                }
+                else if (text.Contains("sad_button_clicked"))
+                {
+                    //TODO: MAKE THE SAD ANIMATION PLAY
+                    string animationName = "Sad2.wmv";
+                    string path = Path.Combine(Environment.CurrentDirectory, @"Animations\", animationName);
+                    Uri pathUri = new Uri(path);
+                    mediaElement.Source = pathUri;
+                    mediaElement.Play();
                 }
                 else
                 {
@@ -219,6 +265,16 @@ namespace WpfApp1
         private void Window_Closed(object sender, EventArgs e)
         {
 
+        }
+
+        private void player_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            string animationName = "Rest_1.wmv";
+            string path = Path.Combine(Environment.CurrentDirectory, @"Animations\", animationName);
+            Uri pathUri = new Uri(path);
+            mediaElement.Source = pathUri;
+            mediaElement.Position = TimeSpan.FromSeconds(0);
+            mediaElement.Play();
         }
     }
 }

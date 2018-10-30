@@ -16,6 +16,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.Diagnostics;
 using System.IO;
+using WMPLib;
 
 namespace WpfApp1
 {
@@ -189,6 +190,42 @@ namespace WpfApp1
             closeStream();
             Application.Current.Shutdown();
             Environment.Exit(0);
+        }
+
+
+        private void angry_button_click(object sender, RoutedEventArgs e)
+        {
+            String message = "angry_button_clicked";
+            byte[] byteTime = Encoding.ASCII.GetBytes(message);
+            ns.Write(byteTime, 0, byteTime.Length);
+        }
+
+        private void confused_button_click(object sender, RoutedEventArgs e)
+        {
+            String message = "confused_button_clicked";
+            byte[] byteTime = Encoding.ASCII.GetBytes(message);
+            ns.Write(byteTime, 0, byteTime.Length);
+        }
+
+        private void happy_button_clicked(object sender, RoutedEventArgs e)
+        {
+            String message = "happy_button_clicked";
+            byte[] byteTime = Encoding.ASCII.GetBytes(message);
+            ns.Write(byteTime, 0, byteTime.Length);
+        }
+
+        private void mocking_button_clicked(object sender, RoutedEventArgs e)
+        {
+            String message = "mocking_button_clicked";
+            byte[] byteTime = Encoding.ASCII.GetBytes(message);
+            ns.Write(byteTime, 0, byteTime.Length);
+        }
+
+        private void sad_button_click(object sender, RoutedEventArgs e)
+        {
+            String message = "sad_button_clicked";
+            byte[] byteTime = Encoding.ASCII.GetBytes(message);
+            ns.Write(byteTime, 0, byteTime.Length);
         }
     }
 }
