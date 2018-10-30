@@ -17,6 +17,12 @@
         <Button x:Name="stopStreamButton" Content="Stop Stream" HorizontalAlignment="Left" Margin="180,36,0,0" VerticalAlignment="Top" Width="164" Height="25" Click="stopStreamButton_Click"/>
         <TextBox x:Name="inputBox" HorizontalAlignment="Left" Height="34" Margin="14,388,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="255" GotFocus="inputBox_GotFocus" LostFocus="inputBox_LostFocus"/>
         <Button x:Name="sendButton" IsDefault="True" Content="Send" HorizontalAlignment="Left" Margin="273,398,0,0" VerticalAlignment="Top" Width="65" Height="25" Click="sendButton_Click"/>
-        <TextBox x:Name="allMessagesBox" HorizontalAlignment="Left" Height="317" Margin="10,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="328" IsReadOnly="True" Focusable="False" TextBlock.LineStackingStrategy="BlockLineHeight" TextBlock.LineHeight="25"/>
+        <Button x:Name="angry_button" Content="Angry" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Width="156" RenderTransformOrigin="0.5,0.5" Height="29" Click="angry_button_click"/>
+        <Button x:Name="confused_button" Content="Confused" HorizontalAlignment="Left" Margin="180,80,0,0" VerticalAlignment="Top" Width="164" RenderTransformOrigin="0.49,0.477" Height="29" Click="button_Click_1"/>
+        <Button x:Name="happy_button" Content="Happy" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" Width="156" RenderTransformOrigin="0.49,0.477" Height="25" Click="button_Click_1"/>
+        <Button x:Name="mocking_button" Content="Mocking" HorizontalAlignment="Left" Margin="180,114,0,0" VerticalAlignment="Top" Width="162" RenderTransformOrigin="0.49,0.477" Height="25" Click="button_Click_1"/>
+        <Button x:Name="sad_button" Content="Sad" HorizontalAlignment="Left" Margin="10,144,0,0" VerticalAlignment="Top" Width="156" RenderTransformOrigin="0.49,0.477" Height="25" Click="button_Click_1"/>
+        <TextBox x:Name="allMessagesBox" HorizontalAlignment="Left" Height="199" Margin="14,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="324" IsReadOnly="True" Focusable="False" TextBlock.LineStackingStrategy="BlockLineHeight" TextBlock.LineHeight="25"/>
+
     </Grid>
 </Window>

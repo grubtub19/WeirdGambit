@@ -16,6 +16,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.Diagnostics;
 using System.IO;
+using WMPLib;
 
 namespace WpfApp1
 {
@@ -189,6 +190,24 @@ namespace WpfApp1
             closeStream();
             Application.Current.Shutdown();
             Environment.Exit(0);
+        }
+
+
+        private void angry_button_click(object sender, RoutedEventArgs e)
+        {
+            String message = "angry_button_clicked";
+            byte[] byteTime = Encoding.ASCII.GetBytes(message);
+            ns.Write(byteTime, 0, byteTime.Length);
+        }
+
+    private void button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
