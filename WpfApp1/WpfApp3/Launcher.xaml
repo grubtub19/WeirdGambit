@@ -5,19 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp3"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        Background="{DynamicResource MaterialDesignPaper}"
+        Background="#FF3E3E3E"
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         mc:Ignorable="d"
-        Title="Launcher" Height="192" Width="585.2" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <Border BorderBrush="#FFF6F6F7" BorderThickness="0" HorizontalAlignment="Left" Height="63" Margin="10,10,0,0" VerticalAlignment="Top" Width="446" CornerRadius="8" Background="#FFF6F6F7">
-            <TextBox x:Name="addressBox" HorizontalAlignment="Center" TextWrapping="Wrap" Text="IP Address" Width="400" Margin="0" FontSize="24" FontFamily="Roboto Light" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="LightGray" Height="32" VerticalAlignment="Center" BorderThickness="0" SelectionBrush="{x:Null}" GotFocus="addressBox_GotFocus" LostFocus="addressBox_LostFocus"/>
-        </Border>
-        <ComboBox x:Name="comboBox1" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top" Width="276" Height="29"/>
-        <ComboBox x:Name="comboBox2" HorizontalAlignment="Left" Margin="291,78,0,0" VerticalAlignment="Top" Width="276" Height="29"/>
-        <Button Content="GO!" IsDefault="True" HorizontalAlignment="Left" Margin="475,10,0,0" VerticalAlignment="Top" Width="69" Height="63" Click="Button_Click"/>
-        <TextBlock x:Name="textBox" HorizontalAlignment="Left" Margin="10,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="38" Width="557" FontWeight="Light"><Run Text="'Oz' -&gt; starts Oz on localhost"/><LineBreak/><Run Text="'Oz network' -&gt; uses local IPv4 (Ex: 172.16.40.27 is my address on TUWireless)"/></TextBlock>
+        Title="Launcher" Height="152.5" Width="585.2" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,0,0">
+        <Grid Margin="0,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="466*"/>
+                <ColumnDefinition Width="111*"/>
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="#FFF6F6F7" BorderThickness="0" Height="63" Margin="10,10,10,0" VerticalAlignment="Top" CornerRadius="8" Background="#FFF7F7F7">
+                <TextBox x:Name="addressBox" TextWrapping="Wrap" Text="IP Address" Margin="23,13,23,17" FontSize="24" FontFamily="Roboto Light" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF999999" BorderThickness="0" SelectionBrush="{x:Null}" GotFocus="addressBox_GotFocus" LostFocus="addressBox_LostFocus"/>
+            </Border>
+            <Button Content="Start" IsDefault="True" Margin="0,10,10,0" VerticalAlignment="Top" Height="63" Click="Button_Click" Grid.Column="1" FontSize="18"/>
+        </Grid>
+        <Grid Margin="0,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="288*"/>
+                <ColumnDefinition Width="289*"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox x:Name="comboBox1" Margin="10,78,2,0" Padding="5,0,5,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="29" Background="#FFF7F7F7"/>
+            <ComboBox x:Name="comboBox2" Margin="3,78,10,0" Padding="5,0,5,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Background="#FFF7F7F7" Grid.Column="1" Height="29"/>
+        </Grid>
     </Grid>
 </Window>

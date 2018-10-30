@@ -10,18 +10,34 @@
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Client" Height="474" Width="364.713" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
-    <Grid Margin="0,0,4.5,1">
+        Title="Client" Height="512.764" Width="347.865" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="inputBox" HorizontalAlignment="Left" Height="30" Margin="10,394,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="257" GotFocus="inputBox_GotFocus" LostFocus="inputBox_LostFocus" Grid.ColumnSpan="2"/>
-        <Button x:Name="sendButton" IsDefault="True" Content="Send" HorizontalAlignment="Left" Margin="95,394,0,0" VerticalAlignment="Top" Width="64" Height="30" Click="sendButton_Click" RenderTransformOrigin="0.5,0.068" Grid.Column="1"/>
-        <Label Content="Programmer" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="92" RenderTransformOrigin="0.514,-0.231" Height="28"/>
-        <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="129" Height="27" Click="startButton_Click"/>
-        <Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Left" Margin="144,38,0,0" VerticalAlignment="Top" Width="129" Height="27" Click="stopButton_Click" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="allMessagesBox" HorizontalAlignment="Left" Height="137" Margin="10,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="325" IsReadOnly="True" Focusable="False" TextBlock.LineStackingStrategy="BlockLineHeight" TextBlock.LineHeight="25" Grid.ColumnSpan="2"/>
-        <MediaElement x:Name="mediaElement" HorizontalAlignment="Left" Height="165" Margin="28,70,0,0" VerticalAlignment="Top" Width="294" Grid.ColumnSpan="2" Source="Animations/Rest_1.wmv" IsMuted="True" LoadedBehavior="Manual" MediaEnded="player_MediaEnded"/>
+
+        <Rectangle Fill="#FF3C3C3C" Height="45" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Grid VerticalAlignment="Bottom" Height="63" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="84*"/>
+                <ColumnDefinition Width="31*"/>
+            </Grid.ColumnDefinitions>
+
+            <Rectangle Fill="#FF3C3C3C" Margin="0,0,0,0" Grid.ColumnSpan="2"/>
+            <Grid Margin="10,10,5,10">
+                <Border BorderThickness="1" Background="#FFC3C3C3" CornerRadius="10"/>
+                <TextBox x:Name="inputBox" Margin="10,0" VerticalContentAlignment="Center" TextWrapping="Wrap" GotFocus="inputBox_GotFocus" LostFocus="inputBox_LostFocus" BorderThickness="0" BorderBrush="{x:Null}"/>
+            </Grid>
+            <Button x:Name="sendButton" IsDefault="True" Content="Send" Margin="5,10,10,10" Height="Auto" Click="sendButton_Click" RenderTransformOrigin="0.5,0.068" Grid.Column="1"/>
+
+        </Grid>
+        <Button x:Name="startButton" Content="Enable Webcam" Margin="10,10,5,0" VerticalAlignment="Top" Height="25" Click="startButton_Click"/>
+        <Button x:Name="stopButton" Content="Disable Webcam" Margin="5,10,10,0" VerticalAlignment="Top" Height="25" Click="stopButton_Click" Grid.Column="1"/>
+
+        <ScrollViewer x:Name="myScrollViewer" Margin="0,0,0,63" Grid.ColumnSpan="2" Height="183" VerticalAlignment="Bottom">
+            <TextBox x:Name="allMessagesBox" TextWrapping="Wrap" Focusable="False" TextBlock.LineHeight="25" Grid.ColumnSpan="2" Margin="10,0,10,0" BorderBrush="{x:Null}"/>
+        </ScrollViewer>
+        <MediaElement x:Name="mediaElement" Margin="0,45,0,0" Grid.ColumnSpan="2" Source="Animations/Rest_1.wmv" IsMuted="True" LoadedBehavior="Manual" MediaEnded="player_MediaEnded" Height="197" VerticalAlignment="Top"/>
     </Grid>
 </Window>

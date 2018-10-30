@@ -10,19 +10,58 @@
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Server" Height="474" Width="364.713" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
-    <Grid Margin="0,0,5,0.5">
-        <Label Content="Wizard Of Oz" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Width="97" Grid.ColumnSpan="2"/>
-        <Button x:Name="startStreamButton" Content="Start Stream" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Width="156" Height="25" Click="startStreamButton_Click"/>
-        <Button x:Name="stopStreamButton" Content="Stop Stream" HorizontalAlignment="Left" Margin="180,36,0,0" VerticalAlignment="Top" Width="164" Height="25" Click="stopStreamButton_Click"/>
-        <TextBox x:Name="inputBox" HorizontalAlignment="Left" Height="34" Margin="14,388,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="255" GotFocus="inputBox_GotFocus" LostFocus="inputBox_LostFocus"/>
-        <Button x:Name="sendButton" IsDefault="True" Content="Send" HorizontalAlignment="Left" Margin="273,398,0,0" VerticalAlignment="Top" Width="65" Height="25" Click="sendButton_Click"/>
-        <Button x:Name="angry_button" Content="Angry" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Width="156" RenderTransformOrigin="0.5,0.5" Height="29" Click="angry_button_click"/>
-        <Button x:Name="confused_button" Content="Confused" HorizontalAlignment="Left" Margin="180,80,0,0" VerticalAlignment="Top" Width="164" RenderTransformOrigin="0.49,0.477" Height="29" Click="confused_button_click"/>
-        <Button x:Name="happy_button" Content="Happy" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" Width="156" RenderTransformOrigin="0.49,0.477" Height="25" Click="happy_button_clicked"/>
-        <Button x:Name="mocking_button" Content="Mocking" HorizontalAlignment="Left" Margin="180,114,0,0" VerticalAlignment="Top" Width="162" RenderTransformOrigin="0.49,0.477" Height="25" Click="mocking_button_clicked"/>
-        <Button x:Name="sad_button" Content="Sad" HorizontalAlignment="Left" Margin="10,144,0,0" VerticalAlignment="Top" Width="156" RenderTransformOrigin="0.49,0.477" Height="25" Click="sad_button_click"/>
-        <TextBox x:Name="allMessagesBox" HorizontalAlignment="Left" Height="199" Margin="14,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="324" IsReadOnly="True" Focusable="False" TextBlock.LineStackingStrategy="BlockLineHeight" TextBlock.LineHeight="25"/>
+        Title="Server" Height="524" Width="352.713" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,0,0">
+        <Grid Margin="0,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="0*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="angry_button" Margin="10,55,5,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="40" Click="angry_button_click">
+                <Image x:Name="angry_emoji" Height="30" Width="68"/>
+            </Button>
+            <Button x:Name="confused_button" Margin="5,55,5,0" VerticalAlignment="Top" Height="40" Click="confused_button_click" Grid.Column="1">
+                <Image x:Name="confused_emoji" Height="30" Width="68"/>
+            </Button>
+            <Button x:Name="happy_button" Margin="10,105,5,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,0.477" Height="40" Click="happy_button_clicked">
+                <Image x:Name="happy_emoji" Height="30" Width="68"/>
+            </Button>
+            <Button x:Name="mocking_button" Margin="5,55,5,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,0.477" Height="40" Click="mocking_button_clicked" Grid.Column="2">
+                <Image x:Name="mocking_emoji" Height="30" Width="68"/>
+            </Button>
+            <Button x:Name="sad_button" Margin="5,105,5,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,0.477" Height="40" Click="sad_button_click" Grid.Column="1">
+                <Image x:Name="sad_emoji" Height="30" Width="68"/>
+            </Button>
+        </Grid>
+        <Grid Margin="0,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="0*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.ColumnSpan="2" Height="63" VerticalAlignment="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="84*"/>
+                    <ColumnDefinition Width="31*"/>
+                </Grid.ColumnDefinitions>
 
+                <Rectangle Fill="#FF3C3C3C" Margin="0,0,0,0" Grid.ColumnSpan="2"/>
+                <Grid Margin="10,10,5,10">
+                    <Border BorderThickness="1" Background="#FFC3C3C3" CornerRadius="10"/>
+                    <TextBox x:Name="inputBox" VerticalContentAlignment="Center" Margin="10,0" TextWrapping="Wrap" GotFocus="inputBox_GotFocus" LostFocus="inputBox_LostFocus" BorderThickness="0" BorderBrush="{x:Null}"/>
+                </Grid>
+                <Button x:Name="sendButton" IsDefault="True" Content="Send" Margin="5,10,10,10" Height="Auto" Click="sendButton_Click" RenderTransformOrigin="0.5,0.068" Grid.Column="1"/>
+
+            </Grid>
+            <Rectangle Fill="#FF3C3C3C" Height="45" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+            <Button x:Name="startStreamButton" Content="Start Stream" Margin="10,10,5,0" VerticalAlignment="Top" Height="25" Click="startStreamButton_Click"/>
+            <Button x:Name="stopStreamButton" Content="Stop Stream" Margin="5,10,10,0" VerticalAlignment="Top" Height="25" Click="stopStreamButton_Click" Grid.Column="1"/>
+
+            <ScrollViewer Name="myScrollViewer" Margin="0,0,0,63" Grid.ColumnSpan="2" Height="249" VerticalAlignment="Bottom">
+                <TextBox x:Name="allMessagesBox" TextWrapping="Wrap" Focusable="False" TextBlock.LineHeight="25" Grid.ColumnSpan="2" Margin="10,0,10,0" BorderBrush="{x:Null}"/>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </Window>

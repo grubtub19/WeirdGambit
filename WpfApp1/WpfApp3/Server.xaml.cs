@@ -36,6 +36,7 @@ namespace WpfApp1
         {
             InitializeComponent();
             InitMessageBox();
+            initEmojis();
             ipAddress = Dns.Resolve(hostName).AddressList[0]; //ffmpeg uses ipAddress to select the destination
             Console.WriteLine(ipAddress.ToString());
             listener = new TcpListener(ipAddress, 4545);
@@ -47,12 +48,28 @@ namespace WpfApp1
             t.Start();
         }
 
+        private void initEmojis()
+        {
+            try
+            {
+                angry_emoji.Source = new BitmapImage(new Uri(Path.Combine(Environment.CurrentDirectory, @"..\..\..\..\Assets\angry.png")));
+                confused_emoji.Source = new BitmapImage(new Uri(Path.Combine(Environment.CurrentDirectory, @"..\..\..\..\Assets\confused.png")));
+                mocking_emoji.Source = new BitmapImage(new Uri(Path.Combine(Environment.CurrentDirectory, @"..\..\..\..\Assets\mocking.png")));
+                happy_emoji.Source = new BitmapImage(new Uri(Path.Combine(Environment.CurrentDirectory, @"..\..\..\..\Assets\happy.png")));
+                sad_emoji.Source = new BitmapImage(new Uri(Path.Combine(Environment.CurrentDirectory, @"..\..\..\..\Assets\sad.png")));
+            }
+            catch (System.IO.DirectoryNotFoundException) {
+                Console.WriteLine("No Image Found");
+            }
+        }
+
         private void sendButton_Click(object sender, RoutedEventArgs e)
         {
             String message = inputBox.Text;
             byte[] byteTime = Encoding.ASCII.GetBytes(message);
             ns.Write(byteTime, 0, byteTime.Length);
-            allMessagesBox.AppendText("You: " + message + "\r\n");
+            allMessagesBox.AppendText("\r\n" + "You: " + message);
+            myScrollViewer.ScrollToBottom();
             inputBox.Text = string.Empty;
         }
         public void DoWork()
@@ -85,7 +102,8 @@ namespace WpfApp1
             }
             else
             {
-                this.allMessagesBox.AppendText("Client: " + text + "\r\n");
+                this.allMessagesBox.AppendText("\r\n" + "Client: " + text);
+                myScrollViewer.ScrollToBottom();
             }
         }
         private void InitMessageBox()

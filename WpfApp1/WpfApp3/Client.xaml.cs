@@ -62,7 +62,8 @@ namespace WpfApp1
             logFile.WriteLine(message);
             byte[] byteTime = Encoding.ASCII.GetBytes(message);
             ns.Write(byteTime, 0, byteTime.Length);
-            allMessagesBox.AppendText("You: " + message + "\r\n");
+            allMessagesBox.AppendText("\r\n" + "You: " + message);
+            myScrollViewer.ScrollToBottom();
             inputBox.Text = string.Empty;
 
         }
@@ -150,7 +151,8 @@ namespace WpfApp1
                 }
                 else
                 {
-                    this.allMessagesBox.AppendText("Server: " + text + "\r\n");
+                    this.allMessagesBox.AppendText("\r\n" + "Server: " + text);
+                    myScrollViewer.ScrollToBottom();
                 }
             }
         }
