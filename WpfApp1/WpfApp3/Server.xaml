@@ -58,10 +58,11 @@
             <Rectangle Fill="#FF3C3C3C" Height="45" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
             <Button x:Name="startStreamButton" Content="Start Stream" Margin="10,10,5,0" VerticalAlignment="Top" Height="25" Click="startStreamButton_Click"/>
             <Button x:Name="stopStreamButton" Content="Stop Stream" Margin="5,10,10,0" VerticalAlignment="Top" Height="25" Click="stopStreamButton_Click" Grid.Column="1"/>
-
+            
             <ScrollViewer Name="myScrollViewer" Margin="0,0,0,63" Grid.ColumnSpan="2" Height="249" VerticalAlignment="Bottom">
                 <TextBox x:Name="allMessagesBox" TextWrapping="Wrap" Focusable="False" TextBlock.LineHeight="25" Grid.ColumnSpan="2" Margin="10,0,10,0" BorderBrush="{x:Null}"/>
             </ScrollViewer>
+            <Button x:Name="speakButton" IsDefault="True" Content="Speak" Margin="85,382,10,68" Height="Auto" Click="speakButton_Click" RenderTransformOrigin="0.5,0.068" Grid.Column="1" BorderBrush="{x:Null}"/>
         </Grid>
     </Grid>
 </Window>

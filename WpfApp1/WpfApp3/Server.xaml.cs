@@ -17,6 +17,8 @@ using System.Net;
 using System.Diagnostics;
 using System.IO;
 using WMPLib;
+using System.Speech.Recognition;
+using System.Windows.Threading;
 
 namespace WpfApp1
 {
@@ -60,6 +62,95 @@ namespace WpfApp1
             }
             catch (System.IO.DirectoryNotFoundException) {
                 Console.WriteLine("No Image Found");
+            }
+        }
+
+        private void rec()
+        {
+            SpeechRecognitionEngine recognizer = new SpeechRecognitionEngine();
+            Grammar dictationGrammar = new DictationGrammar();
+            recognizer.LoadGrammar(dictationGrammar);
+            Brush saveBrush = null;
+            this.Dispatcher.Invoke(() =>
+            {
+                saveBrush = new SolidColorBrush(((SolidColorBrush)(speakButton.Background)).Color);
+                speakButton.Background = new SolidColorBrush(Colors.Red);
+            });
+            try
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    allMessagesBox.AppendText("\r\nSpeak Now");
+                });
+                    
+                recognizer.SetInputToDefaultAudioDevice();
+                RecognitionResult result = recognizer.Recognize();
+                
+                //Console.WriteLine("Ends with Speak Now");
+                this.Dispatcher.Invoke(() => {
+                    //if (allMessagesBox.Text.EndsWith("Speak Now"))
+                    //{
+                        allMessagesBox.Text = allMessagesBox.Text.Remove(allMessagesBox.Text.Length - 11, 11);
+                    //}
+                });
+                
+                
+                if (result != null)
+                {
+                    this.Dispatcher.Invoke(() =>
+                    {
+                        String message = "Speak: " + result.Text;
+                        byte[] byteTime = Encoding.ASCII.GetBytes(message);
+                        ns.Write(byteTime, 0, byteTime.Length);
+                        allMessagesBox.AppendText("\r\n" + "You: " + result.Text);
+                    });
+                    //recognizer.RecognizeAsync(RecognizeMode.Multiple);
+                }
+            }
+            catch (InvalidOperationException exception)
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    allMessagesBox.Text = String.Format("Could not recognize input from default aduio device. Is a microphone or sound card available?\r\n{0} - {1}.", exception.Source, exception.Message);
+                });
+            }
+            catch (System.NullReferenceException exception)
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    allMessagesBox.Text = String.Format("Please repeat your message", exception.Source, exception.Message);
+                });
+            }
+            finally
+            {
+                recognizer.UnloadAllGrammars();
+            }
+            if (saveBrush != null)
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    speakButton.Background = saveBrush;
+                });
+            }
+        }
+
+        private static Action EmptyDelegate = delegate () { };
+
+        public static void Refresh(UIElement uiElement)
+        {
+            uiElement.Dispatcher.Invoke(DispatcherPriority.Render, EmptyDelegate);
+        }
+
+        Thread speechThread = null;
+
+        private void speakButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (speechThread == null || !speechThread.IsAlive)
+            {
+                Brush saveBrush = new SolidColorBrush(((SolidColorBrush)(speakButton.Background)).Color);
+                //System.Threading.Thread.Sleep(5000);
+                speechThread = new Thread(rec);
+                speechThread.Start();
             }
         }
 

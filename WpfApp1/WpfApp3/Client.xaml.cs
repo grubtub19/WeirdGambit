@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using System.Diagnostics;
 using System.IO;
 using System.Speech.Synthesis;
+using System.Speech.Recognition;
 
 
 namespace WpfApp1
@@ -67,6 +68,8 @@ namespace WpfApp1
             inputBox.Text = string.Empty;
 
         }
+
+
         public void DoWork()
         {
             byte[] bytes = new byte[1024];
@@ -86,6 +89,7 @@ namespace WpfApp1
                 }
             }
         }
+
 
         private void SetText(string text)
         {
