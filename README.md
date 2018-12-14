@@ -2,7 +2,7 @@
 
 # Description:
 
-  This is a utility to supplement paired programming. In paired programming, you switch between writing and observing the writer. This program has two modes: Programmer and Oz. The Programmer recieves advice from the "Oz" who is portrayed as an avatar and communicates through text and text-to-speech. This program is for research purposes and is a fully-functional prototype for our Senior Software class.
+  This is a utility to supplement paired programming. In paired programming, you switch between programming and observing the programmer. This program has two modes: Programmer and Oz. Both share a coding environment (Ex: vscode live share). The Programmer recieves coding advice from the "Oz" who is portrayed as an avatar and communicates through text, text-to-speech, and avatar emotes. The Oz receives a video stream of the programmer's face to enhance communication. This program is for research purposes and is a fully-functional prototype for our Senior Software class.
 
 # Instructions:
 
